@@ -5,16 +5,17 @@
 extern char** environ;
 
 int main(int argc, char *argv[]){
-    if (argc == 1)
+    char env_var_name[100];
+
+    printf("Enter env_var name to delete: ");
+    scanf("%s", env_var_name);
+
+    if (strlen(env_var_name) == 0)
     {
         return clearenv();
     }
-    if (argc >= 3)
-    {
-        return printf("Invalid params");
-    }
     
-    unsetenv(argv[1]);
+    unsetenv(env_var_name);
 
     for (int i = 0; environ[i] != NULL; i++)
     {

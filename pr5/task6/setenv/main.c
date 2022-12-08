@@ -1,16 +1,20 @@
 #include <stdlib.h>
 #include <stdio.h>
+#include <string.h>
 
-int main(int argc, char *argv[]){
-    if (argc != 3)
+int main(){
+    char env_var_name[100], env_var_value[100];
+
+    printf("Enter env_var name: ");
+    scanf("%s", env_var_name);
+
+    printf("Enter env_var value: ");
+    scanf("%s", env_var_value);
+
+    if (setenv(env_var_name, env_var_value, 1) == -1)
     {
-        return printf("Use ./program [env_variable_name] [env_variable_value]");
+        return printf("Error occured");
     }
     
-    if (setenv(argv[1], argv[2], 1) == 0)
-    {
-        return printf("%s=%s", argv[1], getenv(argv[1]));
-    }
-    
-    printf("Something went wrong");
+    printf("%s=%s", env_var_name, getenv(env_var_name));
 }

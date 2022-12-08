@@ -2,17 +2,21 @@
 #include <stdio.h>
 #include <string.h>
 
-int main(int argc, char *argv[]){
-    if (argc != 2)
+int main(){
+    char env_var_name[100], env_var_value[100], env_name_value_pair[200];
+
+    printf("Enter env_var name: ");
+    scanf("%s", env_var_name);
+
+    printf("Enter env_var value: ");
+    scanf("%s", env_var_value);
+
+    sprintf(env_name_value_pair, "%s=%s", env_var_name, env_var_value);
+
+    if (putenv(env_name_value_pair) == -1)
     {
-        return printf("Use ./program [env_variable_name] [env_variable_value]");
+        return printf("Error occured");
     }
     
-    if (putenv(argv[1]) == 0)
-    {
-        char* env_variable_name = strtok(argv[1], "=");
-        return printf("%s=%s", env_variable_name, getenv(env_variable_name));
-    }
-    
-    printf("Something went wrong");
+    printf("%s=%s", env_var_name, getenv(env_var_name));
 }

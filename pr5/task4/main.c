@@ -4,8 +4,9 @@
 extern char** environ;
 
 int main(){
-    for (int i = 0; environ[i] != NULL; i++)
+    int i = 0;
+    while (environ[i] != NULL)
     {
-        printf("%s\n", environ[i]);
+        printf("%s\n", environ[i++]);
     }
 }
